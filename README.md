@@ -26,7 +26,7 @@ L'applicazione è completamente containerizzata, il che significa che è possibi
 1. Clonare il repository nell'ambiente locale
 
 ```bash
-git clone https://github.com/username/repository.git
+git clone https://github.com/matteo-coni/subdomain_takeover.git
 cd repository
 ```
 
