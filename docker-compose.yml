@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root #modifica username, password e MONGO_URI
+      MONGO_INITDB_ROOT_USERNAME: username #modifica username, password e MONGO_URI
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - mongodb_data:/data/db
@@ -19,9 +19,9 @@ services:
     depends_on:
       - mongodb
     environment:
-      MONGO_URI: add_uri #MODIFICA
-      DATABASE_NAME: add_db_name
-      COLLECTION_NAME: add_collection_name
+      MONGO_URI: mongo_uri #MODIFICA
+      DATABASE_NAME: db_name #add_db_name
+      COLLECTION_NAME: collection_name #add_collection_name
     volumes:
       - ./data:/app/data  # Monta la cartella locale nel container
     command: python subdomain_takeover_docker.py
