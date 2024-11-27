@@ -1,6 +1,6 @@
 # Subdomain Takeover App
 
-Tool per la ricerca di sottodomini con vulnerabilità al "subdomain takeover". A partire da uno o più domini (es. example.com), il tool effettua l'enumerazione dei sottodomini e la successiva scansione di essi per verificare la possibile vulnerabilità, utilizzando un database MongoDB per lo storage dei risultati. Se già presenti dei domini nel DB, verranno scansionati nuovamente se l'enumerazione dei sottodomini è avvenuta più di un mese fa.
+Tool per la ricerca di sottodomini con vulnerabilità al "subdomain takeover". A partire da uno o più domini (es. example.com), il tool effettua l'enumerazione dei sottodomini e la successiva scansione di essi per verificare la possibile vulnerabilità, utilizzando un database MongoDB per lo storage dei risultati. Se già presenti dei domini nel DB, verranno scansionati nuovamente se l'enumerazione dei sottodomini è avvenuta più di un mese prima.
 
 ## Configurazione e Avvio
 
@@ -76,6 +76,15 @@ Subfinder, utilizzato per il recupero dei sottodomini, utilizza di base dei data
 
 ### Nuclei
 Nuclei, utilizzato come già detto per rilevare sottodomini vulnerabili al "subdomains takeover", utilizza i template presenti in "nuclei-templates/http/takeovers" e i template "dns/azure-takeover-detection.yaml" e "dns/elasticbeanstalk-takeover.yaml: è possibile personalizzarli e/o aggiungerne di nuovi.
+
+### MongoDB
+E' possibile anche scansionare dei documenti già presenti in un database MongoDB. Essi devono avere la seguente forma:
+```json
+{"_id":{"$oid":"6745e7edd95e48b221a8bee6"},
+"domain":"example.com",
+"retrieve_date":{"$date":{"$numberLong":"1732637155355"}},
+"subdomains":[{"name":"www.example.com","vulnerable":false,"last_vulnerability_check":{"$date":{"$numberLong":"1732637167129"}}}]}
+```
 
 
 
