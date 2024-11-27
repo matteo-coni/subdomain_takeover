@@ -134,6 +134,25 @@ def run_nuclei(subdomains_file, collection, domain, subdomains):
     except subprocess.CalledProcessError:
         print(f"[ERRORE] Errore durante l'esecuzione di Nuclei su {subdomains_file}")
 
+def show_vulnerable_subdomains(collection):
+    
+    print("\n[INFO] Domini con sottodomini vulnerabili:\n")
+    
+    domains_with_vulnerabilities = collection.find({
+        "subdomains.vulnerable": True
+    })
+    
+    for domain_data in domains_with_vulnerabilities:
+        domain = domain_data['domain']
+        vulnerable_subdomains = [
+            sub['name'] for sub in domain_data['subdomains'] if sub.get('vulnerable')
+        ]
+        if vulnerable_subdomains:
+            print(f"Dominio: {domain}")
+            for sub in vulnerable_subdomains:
+                print(f"  - {sub}")
+
+
 # --- MAIN FUNCTION ---
 def main():
     collection = connect_db()
@@ -163,6 +182,8 @@ def main():
         else:
             print(f"[ERRORE] Nessun sottodominio trovato per {domain} con Subfinder.")
             update_retrieve_date(collection, domain)
+
+    show_vulnerable_subdomains(collection)
 
     print("[INFO] Operazione completata.")
 
