@@ -11,14 +11,14 @@ L'applicazione è completamente containerizzata, il che significa che è possibi
 - Docker Desktop
 
 ### Configurazione e avvio 
-1. Clonare il repository nell'ambiente locale:
+1. **Clonare** il repository nell'ambiente locale:
 
 ```bash
 git clone https://github.com/matteo-coni/subdomain_takeover.git
 cd subdomain_takeover
 ```
 
-2. Configurare le variabili d'ambiente per MongoDB:
+2. **Configurare le variabili d'ambiente** per MongoDB:
 Per poter utilizzare il tool, è necessario avere un account Atlas MongoDB e creare (gratuitamente) un database vuoto. Successivamente, è necessario aggiungere "Username" e "Password" (dell' account Atlas MongoDB) e "MONGO_URI", "DATABASE_NAME" e "COLLECTION_NAME" (del database creato) nel file **docker-compose.yml**. Più precisamente:
 - Row 10: username
 - Row 11: password
@@ -26,7 +26,7 @@ Per poter utilizzare il tool, è necessario avere un account Atlas MongoDB e cre
 - Row 23: DATABASE_NAME 
 - Row 24: COLLECTION_NAME
 
-3. Inserire domini da analizzare nel file domains.txt:
+3. **Inserire domini** da analizzare nel file domains.txt:
 - Un solo dominio
 ```bash 
 cd data
@@ -43,12 +43,12 @@ cat altro_file.txt >> domains.txt
 ```
 - E' possibile anche utilizzare un editor di testo (es vim/nano) e modificare il file.
 
-4. Eseguire il comando per avviare il container dell'applicazione e il database MongoDB:
+4. **Eseguire il comando per avviare il container** dell'applicazione e il database MongoDB:
 
 ```bash
 docker-compose up --build
 ```
-In questo modo verrà configurato il container e eseguito il tool in esso presente.
+In questo modo verrà configurato il container e **eseguito il tool** in esso presente.
 
 ### Stop e pulizia
 Per fermare i container in esecuzione:
@@ -62,10 +62,10 @@ docker-compose down -v
 ```
 
 ## Architettura e Toolchain
-1. Inserimento domini da analizzare nel database personale MongoDB
-2. Recupero sotto domini attraverso il tool Subfinder (https://github.com/projectdiscovery/subfinder)
-3. Analisi vulnerabilità "subdomains takeover" tramite il tool Nuclei (https://github.com/projectdiscovery/nuclei)
-4. Salvataggio informazioni su database MongoDB e visualizzazione su terminale
+1. **Inserimento domini** da analizzare nel database personale MongoDB
+2. **Recupero sotto domini** attraverso il tool Subfinder (https://github.com/projectdiscovery/subfinder)
+3. **Analisi vulnerabilità** "subdomains takeover" tramite il tool Nuclei (https://github.com/projectdiscovery/nuclei)
+4. **Salvataggio informazioni** su database MongoDB e visualizzazione su terminale
 
 ![Screenshot](images/architecture.png)
 
